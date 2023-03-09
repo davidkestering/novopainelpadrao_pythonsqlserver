@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include 'includes/head.html' %}
+</head>
+<body class="hold-transition skin-blue-light sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  {% include 'includes/topo_painel.html' %}
+
+  {% include 'includes/menu_lateral.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{ vTextos["PAGINAATUAL"] }}
+      </h1>
+      <ol class="breadcrumb">
+          <li><a href="/" class="active"><i class="fa fa-dashboard"></i> Home</a></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- BEGIN BLOCO_MENSAGEM -->
+      <div id="mensagem" class="alert alert-{{ vMsg['TIPOALERTAMENSAGEM'] }} alert-dismissible {{ vMsg['CLASSEMENSAGEM'] }}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa {{ vMsg['TIPOALERTALOGO'] }}"></i> Alerta!</h4>
+        {{ vMsg['MENSAGEM'] }}
+      </div>
+      <!-- END BLOCO_MENSAGEM -->
+      
+      <!-- Default box -->
+      <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Menu Principal</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              {% if vPermissoes['BLOCK_MENU_OUTROS'] %}
+              <!-- BEGIN BLOCK_MENUP_CELULAS -->
+              <h4 class="box-title">Gerência de Células</h4>
+
+              <!-- BEGIN BLOCK_MENUP_LIDER -->
+              <a class="btn btn-app" href="{{LINKMENUPLIDER}}"><i class="fa fa-user"></i>Gerência de Líderes</a>
+              <!-- END BLOCK_MENUP_LIDER -->
+
+              <!-- BEGIN BLOCK_MENUP_SUPERVISOR -->
+              <a class="btn btn-app" href="{{LINKMENUPSUPERVISOR}}"><i class="fa fa-users"></i>Gerência de Supervisores</a>
+              <!-- END BLOCK_MENUP_SUPERVISOR -->
+
+              <!-- BEGIN BLOCK_MENUP_REDE -->
+              <a class="btn btn-app" href="{{LINKMENUPREDE}}"><i class="fa fa-flag"></i>Gerência de Redes</a>
+              <!-- END BLOCK_MENUP_REDE -->
+
+              <!-- BEGIN BLOCK_MENUP_CELULA -->
+              <a class="btn btn-app" href="{{LINKMENUPCELULA}}"><i class="fa fa-map-marker"></i>Gerência de Células</a>
+              <!-- END BLOCK_MENUP_CELULA -->
+
+              <!-- END BLOCK_MENUP_CELULAS -->
+
+
+              <!-- BEGIN BLOCK_MENUP_SEMINARIO -->
+              <h4 class="box-title">Gerência de Inscrições</h4>
+
+              <!-- BEGIN BLOCK_MENUP_STATUSRELACIONAMENTO -->
+              <a class="btn btn-app" href="{{LINKMENUPSTATUSRELACIONAMENTO}}"><i class="fa fa-tag"></i>Gerência de Status de Relacionamentos</a>
+              <!-- END BLOCK_MENUP_STATUSRELACIONAMENTO -->
+
+              <!-- BEGIN BLOCK_MENUP_INSCRICAO -->
+              <a class="btn btn-app" href="{{LINKMENUPINSCRICAO}}"><i class="fa fa-newspaper-o"></i>Gerência de Inscrições</a>
+              <a class="btn btn-app" href="{{LINKMENUPESTATISTICAS}}"><i class="fa fa-bar-chart"></i>Estatísticas</a>
+              <!-- END BLOCK_MENUP_INSCRICAO -->
+
+              <!-- END BLOCK_MENUP_SEMINARIO -->
+              {% endif %}
+
+              {% if vPermissoes['BLOCK_MENU_ADMINISTRATIVO'] %}
+              <h4 class="box-title">Área Administrativa</h4>
+              
+                {% if vPermissoes['BLOCK_MENU_ALTERA_SENHA'] %}
+                <a class="btn btn-app" href="/usuario/alterar_senha"><i class="fa fa-lock"></i>Alterar Dados</a>
+                {% endif %}
+
+                {% if vPermissoes['BLOCK_MENU_USUARIOS'] %}
+                <a class="btn btn-app" href="/usuarios"><i class="fa fa-user"></i>Gerência de Usuários</a>
+                {% endif %}
+
+                {% if vPermissoes['BLOCK_MENU_GRUPO_USUARIOS'] %}
+                <a class="btn btn-app" href="/grupo_de_usuarios"><i class="fa fa-users"></i>Gerência de Grupos de Usuários</a>
+                {% endif %}
+
+                {% if vPermissoes['BLOCK_MENU_TRANSACOES'] %}
+                <a class="btn btn-app" href="/transacoes"><i class="fa fa-exchange"></i>Gerência de Transações</a>
+                {% endif %}
+
+                {% if vPermissoes['BLOCK_MENU_LOG'] %}
+                <a class="btn btn-app" href="/log_transacoes"><i class="fa fa-bullseye"></i>Log de Transações</a>
+                {% endif %}
+
+                {% if vPermissoes['BLOCK_MENU_ERROS_ACESSO'] %}
+                <a class="btn btn-app" href="/log_acessos"><i class="fa fa-bullhorn"></i>Log de Acessos</a>
+                {% endif %}
+
+                {% if vPermissoes['BLOCK_MENU_ERROS_SQL'] %}
+                <a class="btn btn-app" href="/log_erros"><i class="fa fa-database"></i>Log de Erros de Sql</a>
+                {% endif %}
+
+              {% endif %}
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  {% include 'includes/rodape.html' %}
+  
+</div>
+<!-- ./wrapper -->
+
+{% include 'includes/scriptsjs.html' %}
+
+</body>
+</html>
